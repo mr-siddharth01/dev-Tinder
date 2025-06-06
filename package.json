@@ -1,0 +1,20 @@
+{
+  "name": "dev-tinder",
+  "version": "1.0.0",
+  "description": "A Tinder for Developers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "javascript"
+  ],
+  "author": "Siddharth Singh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
