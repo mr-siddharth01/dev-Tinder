@@ -12,12 +12,56 @@ app.post('/signup', async(req,res)=>{
     await user.save()
     res.send('User log')
     console.log("User Saved!")
-  }
+  } 
   catch(err){
     res.status(500).send('User not Saved due to Server ERROR')
     console.log('User not Saved due to Server ERROR')
   } 
 })
+
+
+app.get('/user',async (req,res)=>{
+ const age =  req.body.Age;
+ 
+ try{
+ const user =  await User.findOne({Age : age})
+ if(!user){
+  res.status(400).send('User Not Found')
+ }
+ res.send(user);
+ } 
+ catch(err){
+  res.status(400).send("Something went wrong!")
+ }
+
+}) 
+
+
+// For delete the document with the use of userId:
+app.delete('/user', async(req,res)=>{
+  const userId = req.body.userId
+  try{
+   const user1 = await User.findByIdAndDelete({_id : userId})
+   res.send('User deleted successfully')
+   console.log("User Deleted : ",userId)
+  }
+  catch(err){
+    res.status(500).send('Something went wrong!')
+  }
+})
+
+// update the data 
+app.patch('/user', async(req,res)=>{
+  const userId = req.body.Id
+  const data = req.body
+  try{
+     await User.findByIdAndUpdate({_id : userId},data)
+     res.send('updated')
+  }catch(err){ 
+    res.send('Something went wrong')
+  }
+})
+
 
 connectDB()
 try{
